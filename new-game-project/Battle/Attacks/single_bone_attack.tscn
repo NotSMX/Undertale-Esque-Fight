@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cub2b36u03858"]
+
+[ext_resource type="Script" uid="uid://crvuf7wsuch2n" path="res://Battle/Attacks/single_bone_attack.gd" id="1_vso1q"]
+[ext_resource type="PackedScene" uid="uid://bt05jnrx8nko6" path="res://Battle/Attacks/single_bone.tscn" id="2_ej2tu"]
+
+[node name="SingleBone" type="Node2D" unique_id=458080532]
+script = ExtResource("1_vso1q")
+bone_scene = ExtResource("2_ej2tu")

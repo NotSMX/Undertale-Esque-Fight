@@ -12,12 +12,39 @@ var inputs := Vector2.ZERO
 var motion := Vector2.ZERO
 
 @onready var sprite: Sprite2D = $Sprite
+@onready var hurtsound: AudioStreamPlayer = $Hurt
 @export var max_hp: int = 20
 var hp: int = max_hp
+
+const INVINCIBILITY_TIME := 0.5
+var invincible := false
+
+signal hurt(amount: int)
+signal died
 
 func _ready() -> void:
 	set_physics_process(false)
 	red()
+
+func take_damage(amount: int) -> void:
+	if invincible or amount <= 0:
+		return
+	hurtsound.play()
+	hp = max(hp - amount, 0)
+	hurt.emit(amount)
+	_flash_invincible()
+	if hp <= 0:
+		died.emit()
+
+func _flash_invincible() -> void:
+	invincible = true
+	var tween := create_tween()
+	tween.tween_property(sprite, "modulate:a", 0.2, 0.05)
+	tween.tween_property(sprite, "modulate:a", 1.0, 0.05)
+	tween.set_loops(int(INVINCIBILITY_TIME / 0.1))
+	await get_tree().create_timer(INVINCIBILITY_TIME).timeout
+	invincible = false
+	sprite.modulate.a = 1.0
 
 func _physics_process(_delta: float) -> void:
 	match mode:

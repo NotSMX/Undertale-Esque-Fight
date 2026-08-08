@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bt05jnrx8nko6"]
+
+[ext_resource type="Script" uid="uid://cdb1v1oovd8m1" path="res://Battle/Attacks/bone.gd" id="1_gv3bv"]
+[ext_resource type="Texture2D" uid="uid://cvjinv07384gf" path="res://Battle/Attacks/bone_sans.png" id="2_ujr42"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6sy41"]
+size = Vector2(6, 14)
+
+[node name="SingleBone" type="Area2D" unique_id=1645319398]
+collision_layer = 513
+script = ExtResource("1_gv3bv")
+sprite_path = NodePath("Sprite")
+
+[node name="Sprite" type="NinePatchRect" parent="." unique_id=948104768]
+offset_left = -7.0
+offset_top = -9.0
+offset_right = 7.0
+offset_bottom = 9.0
+texture = ExtResource("2_ujr42")
+patch_margin_left = 7
+patch_margin_top = 9
+patch_margin_bottom = 9
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1738916251]
+position = Vector2(0, -9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=715533861]
+shape = SubResource("RectangleShape2D_6sy41")
+debug_color = Color(0.701961, 0.701961, 0.701961, 0.419608)

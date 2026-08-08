@@ -3,8 +3,18 @@ extends BattleBoxBehaviour
 const SQUARE_SIZE := 140.0
 const RESIZE_TIME := 0.25
 
+## Drop attack scenes (root = Node2D with a script extending AttackBase) here in the inspector.
+@export var attacks: Array[PackedScene] = []
+
 var center: Vector2
 var initialized := false
+var current_attack: AttackBase
+
+# Original (un-shrunk) wall + frame dimensions, captured once when the scene loads.
+var original_sizes := {}
+var original_positions := {}
+var original_frame_size: Vector2
+var original_frame_position: Vector2
 
 func _on_gain_control() -> void:
 	var soul: SoulBattle = Box.get_parent().get_node("Soul")
@@ -20,6 +30,22 @@ func _on_gain_control() -> void:
 			(left.position.x + right.position.x) / 2.0,
 			(top.position.y + bottom.position.y) / 2.0
 		)
+
+		original_sizes = {
+			"top": top.shape.size.x,
+			"bottom": bottom.shape.size.x,
+			"left": left.shape.size.x,
+			"right": right.shape.size.x,
+		}
+		original_positions = {
+			"top": top.position,
+			"bottom": bottom.position,
+			"left": left.position,
+			"right": right.position,
+		}
+		original_frame_size = Box.box_frame.size
+		original_frame_position = Box.box_frame.global_position
+
 		initialized = true
 
 	var tween := create_tween().set_parallel()
@@ -43,5 +69,42 @@ func _on_gain_control() -> void:
 	soul.menu_disable()
 	soul.visible = true
 
+	_run_random_attack()
+
+func _run_random_attack() -> void:
+	if attacks.is_empty():
+		return
+	current_attack = attacks.pick_random().instantiate()
+	add_child(current_attack)
+	current_attack.setup(Box)
+	current_attack.attack_finished.connect(_on_attack_finished, CONNECT_ONE_SHOT)
+	current_attack.start_attack()
+
+func _on_attack_finished() -> void:
+	current_attack.queue_free()
+	current_attack = null
+	Box.change_state(BattleBox.State.Menu)
+
 func _on_lose_control() -> void:
-	pass
+	if current_attack and is_instance_valid(current_attack):
+		current_attack.queue_free()
+		current_attack = null
+
+	var top: CollisionShape2D = Box.walls["top"]
+	var bottom: CollisionShape2D = Box.walls["bottom"]
+	var left: CollisionShape2D = Box.walls["left"]
+	var right: CollisionShape2D = Box.walls["right"]
+
+	var tween := create_tween().set_parallel()
+	tween.tween_property(top.shape, "size:x", original_sizes["top"], RESIZE_TIME)
+	tween.tween_property(bottom.shape, "size:x", original_sizes["bottom"], RESIZE_TIME)
+	tween.tween_property(left.shape, "size:x", original_sizes["left"], RESIZE_TIME)
+	tween.tween_property(right.shape, "size:x", original_sizes["right"], RESIZE_TIME)
+
+	tween.tween_property(top, "position", original_positions["top"], RESIZE_TIME)
+	tween.tween_property(bottom, "position", original_positions["bottom"], RESIZE_TIME)
+	tween.tween_property(left, "position", original_positions["left"], RESIZE_TIME)
+	tween.tween_property(right, "position", original_positions["right"], RESIZE_TIME)
+
+	tween.tween_property(Box.box_frame, "size", original_frame_size, RESIZE_TIME)
+	tween.tween_property(Box.box_frame, "global_position", original_frame_position, RESIZE_TIME)

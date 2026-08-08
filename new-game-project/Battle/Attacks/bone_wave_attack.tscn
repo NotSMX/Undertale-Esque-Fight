@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bcc5a6ymsfegw"]
+
+[ext_resource type="Script" uid="uid://beem8uapve8gw" path="res://Battle/Attacks/bone_wave_attack.gd" id="1_t3q1b"]
+[ext_resource type="PackedScene" uid="uid://bt05jnrx8nko6" path="res://Battle/Attacks/single_bone.tscn" id="2_yvae3"]
+
+[node name="BoneWaveAttack" type="Node2D" unique_id=3662093]
+script = ExtResource("1_t3q1b")
+bone_scene = ExtResource("2_yvae3")
+spacing = 24.58
