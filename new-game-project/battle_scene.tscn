@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c78n0yfbk1p4q"]
+
+[ext_resource type="PackedScene" uid="uid://ctmkb1gh0a14s" path="res://Battle/Buttons/buttons.tscn" id="1_fw8re"]
+[ext_resource type="PackedScene" uid="uid://cobjcttlv6o13" path="res://Battle/Soul/soul.tscn" id="2_r5l0u"]
+[ext_resource type="PackedScene" uid="uid://3mahpp3h1cx4" path="res://Battle/Box/BattleBox.tscn" id="3_5g7vw"]
+[ext_resource type="Script" uid="uid://cxwa6thj50t0i" path="res://Battle/Box/menu_state.gd" id="4_gf131"]
+[ext_resource type="Script" uid="uid://cps2247pv8t32" path="res://Battle/Box/blittering_state.gd" id="5_sl17i"]
+
+[node name="main" type="Node2D" unique_id=943069953]
+
+[node name="Buttons" parent="." unique_id=1202300957 instance=ExtResource("1_fw8re")]
+position = Vector2(0, 440)
+
+[node name="Soul" parent="." unique_id=38162190 instance=ExtResource("2_r5l0u")]
+position = Vector2(319, 328)
+
+[node name="BattleBox" parent="." unique_id=1257953882 instance=ExtResource("3_5g7vw")]
+
+[node name="States" type="Node2D" parent="BattleBox" unique_id=317921769]
+
+[node name="MenuState" type="Node2D" parent="BattleBox/States" unique_id=2072774819]
+script = ExtResource("4_gf131")
+
+[node name="BlitteringState" type="Node2D" parent="BattleBox/States" unique_id=880797598]
+script = ExtResource("5_sl17i")

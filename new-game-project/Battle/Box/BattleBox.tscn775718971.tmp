@@ -1,0 +1,318 @@
+[gd_scene format=3 uid="uid://3mahpp3h1cx4"]
+
+[ext_resource type="Script" uid="uid://bd5321anax1kv" path="res://Battle/Box/BattleBox.gd" id="1_htnbd"]
+[ext_resource type="StyleBox" uid="uid://lx860swgqgcf" path="res://Boxes/BoxBackground.tres" id="2_o8u07"]
+[ext_resource type="Theme" uid="uid://s3o3wkvbt3ej" path="res://Themes/DTMono24.tres" id="3_f5ep8"]
+[ext_resource type="Texture2D" uid="uid://b11qd5emkkagu" path="res://Boxes/GlobalBoxTexture.tres" id="3_ms4jc"]
+[ext_resource type="Script" uid="uid://douif51igwt5k" path="res://Battle/Box/Blitter.gd" id="4_shawu"]
+[ext_resource type="PackedScene" uid="uid://dnu6jhm3w5lk8" path="res://Menus/Slider.tscn" id="5_20ij6"]
+[ext_resource type="AudioStream" uid="uid://bp5oyjspngmp2" path="res://sfx/Clicks/generic2.wav" id="5_61718"]
+[ext_resource type="Script" uid="uid://c30qf1uquibgh" path="res://Battle/Box/blittering.gd" id="6_f6pem"]
+[ext_resource type="AudioStream" uid="uid://bh0xfl2mpo5vi" path="res://sfx/button_select.wav" id="7_u3o5n"]
+[ext_resource type="AudioStream" uid="uid://c6u3egkne7fdu" path="res://sfx/button_choice.wav" id="8_wdevt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yiolc"]
+size = Vector2(580, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p27oi"]
+size = Vector2(150, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8pib"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u3r4t"]
+bg_color = Color(0.101961, 1, 0, 1)
+
+[node name="BattleBox" type="Node2D" unique_id=517280385]
+script = ExtResource("1_htnbd")
+
+[node name="Behaviours" type="Node" parent="." unique_id=1821119821]
+
+[node name="Blittering" type="Node" parent="Behaviours" unique_id=2090565001]
+script = ExtResource("6_f6pem")
+
+[node name="BoxContainer" type="MarginContainer" parent="." unique_id=309878457]
+custom_minimum_size = Vector2(35, 35)
+offset_right = 640.0
+offset_bottom = 480.0
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 250
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 90
+metadata/_edit_group_ = true
+
+[node name="TL" type="RemoteTransform2D" parent="BoxContainer" unique_id=1258384885]
+update_scale = false
+
+[node name="BR" type="RemoteTransform2D" parent="BoxContainer" unique_id=1666045105]
+rotation = 3.14159
+update_scale = false
+
+[node name="Panel" type="Panel" parent="BoxContainer" unique_id=1056986774]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_o8u07")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="BoxContainer" unique_id=67398874]
+layout_mode = 2
+texture = ExtResource("3_ms4jc")
+patch_margin_left = 11
+patch_margin_top = 11
+patch_margin_right = 11
+patch_margin_bottom = 11
+
+[node name="Webs" type="Control" parent="BoxContainer/NinePatchRect" unique_id=1300545685]
+show_behind_parent = true
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bullets" type="Control" parent="BoxContainer/NinePatchRect" unique_id=31231719]
+show_behind_parent = true
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RectNoClip" type="Control" parent="BoxContainer/NinePatchRect" unique_id=10895113]
+show_behind_parent = true
+anchors_preset = 0
+offset_right = 584.0
+offset_bottom = 140.0
+
+[node name="Collisions" type="StaticBody2D" parent="BoxContainer" unique_id=1720864899]
+collision_mask = 0
+
+[node name="Top" type="CollisionShape2D" parent="BoxContainer/Collisions" unique_id=402569039]
+position = Vector2(318, 250)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_yiolc")
+debug_color = Color(0.47, 0.540667, 1, 0.0392157)
+
+[node name="Bottom" type="CollisionShape2D" parent="BoxContainer/Collisions" unique_id=571571129]
+position = Vector2(316, 390)
+shape = SubResource("RectangleShape2D_yiolc")
+debug_color = Color(0.47, 0.540667, 1, 0.0392157)
+
+[node name="Left" type="CollisionShape2D" parent="BoxContainer/Collisions" unique_id=1564016388]
+position = Vector2(32, 320)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_p27oi")
+debug_color = Color(0.47, 0.540667, 1, 0.0392157)
+
+[node name="Right" type="CollisionShape2D" parent="BoxContainer/Collisions" unique_id=744223758]
+position = Vector2(608, 320)
+rotation = 4.71239
+shape = SubResource("RectangleShape2D_p27oi")
+debug_color = Color(0.47, 0.540667, 1, 0.0392157)
+
+[node name="Acts" type="MarginContainer" parent="." unique_id=1681584883]
+visible = false
+offset_left = 28.0
+offset_top = 246.0
+offset_right = 612.0
+offset_bottom = 394.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 74
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 10
+metadata/_edit_group_ = true
+
+[node name="Options" type="SplitContainer" parent="Acts" unique_id=455380279]
+layout_mode = 2
+split_offsets = PackedInt32Array(245)
+dragger_visibility = 2
+split_offset = 245
+
+[node name="Column1" type="RichTextLabel" parent="Acts/Options" unique_id=1851908564]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("3_f5ep8")
+bbcode_enabled = true
+text = "* Check
+* Shoo
+"
+scroll_active = false
+
+[node name="Column2" type="RichTextLabel" parent="Acts/Options" unique_id=809107866]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("3_f5ep8")
+bbcode_enabled = true
+text = "* Flex"
+scroll_active = false
+
+[node name="Items" type="MarginContainer" parent="." unique_id=682802642]
+visible = false
+offset_left = 28.0
+offset_top = 246.0
+offset_right = 1210.0
+offset_bottom = 394.0
+theme_override_constants/margin_left = 74
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 10
+metadata/_edit_group_ = true
+
+[node name="TextContainer" type="MarginContainer" parent="Items" unique_id=1447025598]
+layout_mode = 2
+theme_override_constants/margin_bottom = 24
+
+[node name="Items" type="RichTextLabel" parent="Items/TextContainer" unique_id=268353304]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("3_f5ep8")
+bbcode_enabled = true
+text = "* Item 1
+* Item 2
+* Item 3
+Item 4
+Item 5
+Item 6
+Item 7
+Item 8"
+scroll_active = false
+
+[node name="ScrollContainer" type="Control" parent="Items" unique_id=314736947]
+layout_mode = 2
+
+[node name="Slider" parent="Items/ScrollContainer" unique_id=804928672 instance=ExtResource("5_20ij6")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0199456
+anchor_top = -0.178571
+anchor_right = 0.0199456
+anchor_bottom = 0.303571
+offset_left = 443.0
+offset_top = 10.0
+offset_right = 463.0
+offset_bottom = 57.0
+
+[node name="Target" type="MarginContainer" parent="." unique_id=31695523]
+visible = false
+offset_left = 28.0
+offset_top = 246.0
+offset_right = 612.0
+offset_bottom = 394.0
+theme_override_constants/margin_left = 74
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 10
+metadata/_edit_group_ = true
+
+[node name="Targets" type="RichTextLabel" parent="Target" unique_id=29502519]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("3_f5ep8")
+bbcode_enabled = true
+text = "* Enemy 1
+* Enemy 2
+* Enemy 3
+"
+fit_content = true
+scroll_active = false
+
+[node name="HpBars" type="MarginContainer" parent="Target" unique_id=1303795807]
+layout_mode = 2
+theme_override_constants/margin_left = 220
+theme_override_constants/margin_top = 5
+
+[node name="Control" type="Control" parent="Target/HpBars" unique_id=1897328622]
+layout_mode = 2
+
+[node name="1" type="ProgressBar" parent="Target/HpBars/Control" unique_id=1875340416]
+layout_mode = 0
+offset_right = 115.0
+offset_bottom = 18.0
+theme_override_styles/background = SubResource("StyleBoxFlat_f8pib")
+theme_override_styles/fill = SubResource("StyleBoxFlat_u3r4t")
+value = 50.0
+allow_greater = true
+show_percentage = false
+
+[node name="2" type="ProgressBar" parent="Target/HpBars/Control" unique_id=872571271]
+layout_mode = 0
+offset_top = 30.0
+offset_right = 115.0
+offset_bottom = 48.0
+theme_override_styles/background = SubResource("StyleBoxFlat_f8pib")
+theme_override_styles/fill = SubResource("StyleBoxFlat_u3r4t")
+value = 50.0
+allow_greater = true
+show_percentage = false
+
+[node name="3" type="ProgressBar" parent="Target/HpBars/Control" unique_id=22651202]
+layout_mode = 0
+offset_top = 60.0
+offset_right = 115.0
+offset_bottom = 78.0
+theme_override_styles/background = SubResource("StyleBoxFlat_f8pib")
+theme_override_styles/fill = SubResource("StyleBoxFlat_u3r4t")
+value = 50.0
+allow_greater = true
+show_percentage = false
+
+[node name="Mercy" type="MarginContainer" parent="." unique_id=1008889547]
+visible = false
+offset_left = 28.0
+offset_top = 246.0
+offset_right = 612.0
+offset_bottom = 394.0
+theme_override_constants/margin_left = 74
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 10
+metadata/_edit_group_ = true
+
+[node name="Choices" type="RichTextLabel" parent="Mercy" unique_id=1336982591]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("3_f5ep8")
+bbcode_enabled = true
+text = "* Spare
+* Flee"
+scroll_active = false
+
+[node name="Blitter" type="MarginContainer" parent="." unique_id=1468116537]
+offset_left = 28.0
+offset_top = 246.0
+offset_right = 612.0
+offset_bottom = 394.0
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+metadata/_edit_group_ = true
+
+[node name="Text" type="RichTextLabel" parent="Blitter" unique_id=2053550743]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("3_f5ep8")
+bbcode_enabled = true
+text = "* Mad"
+scroll_active = false
+context_menu_enabled = true
+visible_characters_behavior = 1
+script = ExtResource("4_shawu")
+interval = 0.05
+queued_texts_handling = 1
+
+[node name="Click" type="AudioStreamPlayer" parent="Blitter/Text" unique_id=1058611624]
+stream = ExtResource("5_61718")
+volume_db = -4.0
+
+[node name="Sounds" type="Node" parent="." unique_id=194308313]
+
+[node name="select" type="AudioStreamPlayer" parent="Sounds" unique_id=1155107787]
+stream = ExtResource("7_u3o5n")
+
+[node name="choice" type="AudioStreamPlayer" parent="Sounds" unique_id=1853710438]
+stream = ExtResource("8_wdevt")
