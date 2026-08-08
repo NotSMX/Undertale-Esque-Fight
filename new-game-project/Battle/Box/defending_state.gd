@@ -5,6 +5,9 @@ const RESIZE_TIME := 0.25
 const CENTER := Vector2(320.0, 320.0)
 
 func _on_gain_control() -> void:
+	var soul: SoulBattle = Box.get_parent().get_node("Soul")
+	soul.visible = false
+
 	var tween := create_tween().set_parallel()
 
 	var top: CollisionShape2D = Box.walls["top"]
@@ -28,9 +31,9 @@ func _on_gain_control() -> void:
 
 	await tween.finished
 
-	var soul: SoulBattle = Box.get_parent().get_node("Soul")
 	soul.global_position = CENTER
 	soul.menu_disable()
+	soul.visible = true
 
 func _on_lose_control() -> void:
 	pass
