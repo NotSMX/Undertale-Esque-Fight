@@ -6,3 +6,4 @@ func _on_gain_control() -> void:
 
 func _on_lose_control() -> void:
 	Box.buttons.disable()
+	Box.buttons.reset()

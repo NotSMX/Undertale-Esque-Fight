@@ -16,3 +16,11 @@ func _on_gain_control() -> void:
 
 func _on_lose_control() -> void:
 	pass
+
+func _input(event: InputEvent) -> void:
+	if !enabled:
+		return
+	input(event)
+
+func input(event: InputEvent) -> void:
+	pass

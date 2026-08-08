@@ -1,6 +1,7 @@
 extends BattleBoxBehaviour
 
 func _on_gain_control() -> void:
+	
 	Box.Screens[Box.State.Blittering].show()
 	if Box.ActionMemory.size() > 1:
 		Box.exit_menu.emit()

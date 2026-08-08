@@ -69,3 +69,4 @@ func menu_enable() -> void:
 
 func menu_disable() -> void:
 	set_physics_process(true)
+	z_index = 10
