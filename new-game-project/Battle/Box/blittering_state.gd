@@ -1,8 +1,8 @@
 extends BattleBoxBehaviour
 
 var action_text := {
-	0: "* You check yourself.",
-	1: "* You ready your weapon.",
+	0: "* You ready your weapon.",
+	1: "* You check yourself.",
 	2: "* You check your items.",
 	3: "* You plead for mercy.",
 }

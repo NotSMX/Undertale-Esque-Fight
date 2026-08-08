@@ -2,7 +2,7 @@ extends BattleBoxBehaviour
 
 const SQUARE_SIZE := 140.0
 const RESIZE_TIME := 0.25
-const CENTER := Vector2(320.0, 320.0)
+const CENTER := Vector2(320.0, 300.0)
 
 func _on_gain_control() -> void:
 	var soul: SoulBattle = Box.get_parent().get_node("Soul")

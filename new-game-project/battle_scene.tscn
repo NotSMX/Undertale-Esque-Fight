@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ctmkb1gh0a14s" path="res://Battle/Buttons/buttons.tscn" id="1_fw8re"]
 [ext_resource type="PackedScene" uid="uid://cobjcttlv6o13" path="res://Battle/Soul/soul.tscn" id="2_r5l0u"]
 [ext_resource type="PackedScene" uid="uid://3mahpp3h1cx4" path="res://Battle/Box/BattleBox.tscn" id="3_5g7vw"]
+[ext_resource type="PackedScene" uid="uid://dqju025dnhuna" path="res://Battle/HUD/hud.tscn" id="4_5joda"]
 
 [node name="main" type="Node2D" unique_id=943069953]
 
@@ -13,3 +14,11 @@ position = Vector2(0, 440)
 position = Vector2(319, 328)
 
 [node name="BattleBox" parent="." unique_id=517280385 instance=ExtResource("3_5g7vw")]
+position = Vector2(0, -19)
+
+[node name="HUD" parent="." unique_id=750678652 instance=ExtResource("4_5joda")]
+offset_left = 32.0
+offset_top = 386.0
+offset_right = 618.0
+offset_bottom = 410.0
+character_name = "ME"

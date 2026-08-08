@@ -12,6 +12,8 @@ var inputs := Vector2.ZERO
 var motion := Vector2.ZERO
 
 @onready var sprite: Sprite2D = $Sprite
+@export var max_hp: int = 20
+var hp: int = max_hp
 
 func _ready() -> void:
 	set_physics_process(false)

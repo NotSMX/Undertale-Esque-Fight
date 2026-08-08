@@ -1,6 +1,7 @@
 extends BattleBoxBehaviour
 
 func _on_gain_control() -> void:
+	Box.text_label.text = ""
 	Box.buttons.enable()
 	Box.get_node("../Soul").menu_enable()
 
