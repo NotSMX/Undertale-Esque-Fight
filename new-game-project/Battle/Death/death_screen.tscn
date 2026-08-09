@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dggr74u132cr4"]
+
+[ext_resource type="Script" uid="uid://brn185o30ewup" path="res://Battle/Death/death_screen.gd" id="1_tng4c"]
+[ext_resource type="Theme" uid="uid://s3o3wkvbt3ej" path="res://Themes/DTMono24.tres" id="5_1ttji"]
+
+[node name="DeathScreen" type="Node2D" unique_id=550156878]
+script = ExtResource("1_tng4c")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1041852672]
+
+[node name="Background" type="ColorRect" parent="UI" unique_id=547741521]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RetryLabel" type="Label" parent="UI" unique_id=2117138730]
+offset_left = 257.0
+offset_top = 350.0
+offset_right = 385.0
+offset_bottom = 382.0
+theme = ExtResource("5_1ttji")
+text = "Retry?"
+horizontal_alignment = 1

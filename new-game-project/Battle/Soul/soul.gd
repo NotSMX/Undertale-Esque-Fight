@@ -15,7 +15,7 @@ var motion := Vector2.ZERO
 @onready var hurtsound: AudioStreamPlayer = $Hurt
 @export var max_hp: int = 20
 var hp: int = max_hp
-
+const DeathScreenScene := preload("res://Battle/Death/death_screen.tscn")
 const INVINCIBILITY_TIME := 0.5
 var invincible := false
 
@@ -25,6 +25,7 @@ signal died
 func _ready() -> void:
 	set_physics_process(false)
 	red()
+	died.connect(_on_died)
 
 func take_damage(amount: int) -> void:
 	if invincible or amount <= 0:
@@ -99,3 +100,11 @@ func menu_enable() -> void:
 func menu_disable() -> void:
 	set_physics_process(true)
 	z_index = 10
+	
+func _on_died() -> void:
+	set_physics_process(false)
+	set_process_input(false)
+	visible = false
+	var death_screen := DeathScreenScene.instantiate()
+	death_screen.death_position = global_position
+	get_tree().current_scene.add_child(death_screen)
