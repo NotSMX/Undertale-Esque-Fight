@@ -7,6 +7,7 @@ enum State { Menu, Blittering, Defending }
 @onready var buttons: BattleButtons = get_parent().get_node("Buttons")
 @onready var text_label: RichTextLabel = $Blitter/Text
 @onready var box_frame: Control = $BoxContainer/NinePatchRect
+@onready var click: AudioStreamPlayer = $Sounds/Generic2
 var button_choice: int = 0
 @onready var states := {
 	State.Menu: $Behaviours/MenuState,

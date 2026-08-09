@@ -324,6 +324,9 @@ volume_db = -4.0
 
 [node name="Sounds" type="Node" parent="." unique_id=194308313]
 
+[node name="Generic2" type="AudioStreamPlayer" parent="Sounds" unique_id=2004211483]
+stream = ExtResource("5_61718")
+
 [node name="select" type="AudioStreamPlayer" parent="Sounds" unique_id=1155107787]
 stream = ExtResource("7_u3o5n")
 
