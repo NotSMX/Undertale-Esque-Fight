@@ -22,5 +22,5 @@ func _input(event: InputEvent) -> void:
 		return
 	input(event)
 
-func input(event: InputEvent) -> void:
+func input(_event: InputEvent) -> void:
 	pass

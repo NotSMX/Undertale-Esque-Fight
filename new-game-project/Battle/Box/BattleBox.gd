@@ -19,10 +19,19 @@ var button_choice: int = 0
 	"left": $BoxContainer/Collisions/Left,
 	"right": $BoxContainer/Collisions/Right,
 }
+@onready var clip_area: Control = $ClipArea
 
+func _process(_delta: float) -> void:
+	clip_area.global_position = box_frame.global_position
+	clip_area.size = box_frame.size
+	
 var current_state: BattleBoxBehaviour
 
 func _ready() -> void:
+	$BoxContainer.clip_contents = true
+	print("BoxContainer rect: ", $BoxContainer.get_global_rect())
+	print("NinePatchRect rect: ", box_frame.get_global_rect())
+	print("clip_contents: ", $BoxContainer.clip_contents)
 	buttons.selectbutton.connect(_on_select_button)
 	buttons.movesoul.connect(_on_move_soul)
 	change_state(State.Menu)

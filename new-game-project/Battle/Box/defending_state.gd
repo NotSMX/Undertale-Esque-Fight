@@ -3,14 +3,12 @@ extends BattleBoxBehaviour
 const SQUARE_SIZE := 140.0
 const RESIZE_TIME := 0.25
 
-## Drop attack scenes (root = Node2D with a script extending AttackBase) here in the inspector.
 @export var attacks: Array[PackedScene] = []
 
 var center: Vector2
 var initialized := false
 var current_attack: AttackBase
 
-# Original (un-shrunk) wall + frame dimensions, captured once when the scene loads.
 var original_sizes := {}
 var original_positions := {}
 var original_frame_size: Vector2
@@ -30,22 +28,16 @@ func _on_gain_control() -> void:
 			(left.position.x + right.position.x) / 2.0,
 			(top.position.y + bottom.position.y) / 2.0
 		)
-
 		original_sizes = {
-			"top": top.shape.size.x,
-			"bottom": bottom.shape.size.x,
-			"left": left.shape.size.x,
-			"right": right.shape.size.x,
+			"top": top.shape.size.x, "bottom": bottom.shape.size.x,
+			"left": left.shape.size.x, "right": right.shape.size.x,
 		}
 		original_positions = {
-			"top": top.position,
-			"bottom": bottom.position,
-			"left": left.position,
-			"right": right.position,
+			"top": top.position, "bottom": bottom.position,
+			"left": left.position, "right": right.position,
 		}
 		original_frame_size = Box.box_frame.size
 		original_frame_position = Box.box_frame.global_position
-
 		initialized = true
 
 	var tween := create_tween().set_parallel()

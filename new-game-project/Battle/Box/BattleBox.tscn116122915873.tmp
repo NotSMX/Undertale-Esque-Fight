@@ -65,7 +65,6 @@ layout_mode = 2
 theme_override_styles/panel = ExtResource("2_o8u07")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="BoxContainer" unique_id=67398874]
-z_index = 1
 layout_mode = 2
 texture = ExtResource("3_ms4jc")
 patch_margin_left = 11
@@ -329,10 +328,3 @@ stream = ExtResource("7_u3o5n")
 
 [node name="choice" type="AudioStreamPlayer" parent="Sounds" unique_id=1853710438]
 stream = ExtResource("8_wdevt")
-
-[node name="ClipArea" type="Control" parent="." unique_id=778688706]
-clip_contents = true
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0

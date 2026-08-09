@@ -18,7 +18,4 @@ func _run_attack() -> void:
 
 	await get_tree().create_timer(attack_duration).timeout
 
-	for child in get_children():
-		child.queue_free()
-
 	_finish_attack()
