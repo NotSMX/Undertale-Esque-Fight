@@ -25,5 +25,5 @@ position = Vector2(319, 328)
 [node name="BattleBox" parent="." unique_id=517280385 instance=ExtResource("3_5g7vw")]
 
 [node name="Sans" parent="." unique_id=54890946 instance=ExtResource("5_gf131")]
-position = Vector2(307, 232)
+position = Vector2(307, 241)
 scale = Vector2(1.655, 1.655)

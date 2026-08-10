@@ -83,3 +83,6 @@ stream = ExtResource("11_3vptc")
 
 [node name="Hurt" type="AudioStreamPlayer" parent="." unique_id=222153854]
 stream = ExtResource("8_cm5n5")
+
+[node name="KrTimer" type="Timer" parent="." unique_id=886123295]
+autostart = true

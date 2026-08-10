@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 		tick_timer = 0.0
 		for body in bodies_inside:
 			if is_instance_valid(body):
-				body.take_tick_damage(damage)
+				body.take_tick_damage(damage, false)
 
 func _physics_process(delta: float) -> void:
 	position += velocity * delta
@@ -63,8 +63,10 @@ func _on_body_entered(body: Node2D) -> void:
 		else:
 			bodies_inside.append(body)
 			tick_timer = tick_interval
-			body.take_tick_damage(damage)
 
+			# First contact with this Bone?
+			body.take_tick_damage(damage, true)
+			
 func _on_body_exited(body: Node2D) -> void:
 	if body is SoulBattle and bodies_inside.has(body):
 		bodies_inside.erase(body)

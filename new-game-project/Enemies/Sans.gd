@@ -9,10 +9,10 @@ class_name Sans
 
 ## Attack scenes to run on this enemy's turn — same AttackBase scenes your
 ## DefendingState already uses.
-@export var attacks: Array[PackedScene] = []
+var attacks: Array[PackedScene] = []
 ## Dialogue shown right before the matching attack in `attacks` (same index).
 ## Leave an entry null/empty to skip dialogue for that attack.
-@export var attack_dialogues: Array[Dialogues] = []
+var attack_dialogues: Array[Dialogues] = []
 var attack_index := 0
 
 ## -- Intro sequence -------------------------------------------------------

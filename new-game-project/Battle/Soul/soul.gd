@@ -15,6 +15,8 @@ var motion := Vector2.ZERO
 @onready var hurtsound: AudioStreamPlayer = $Hurt
 @export var max_hp: int = 99
 var hp: int = max_hp
+var kr: int = 0
+var krtime: float = 0.5
 const DeathScreenScene := preload("res://Battle/Death/death_screen.tscn")
 const INVINCIBILITY_TIME := 0.5
 var invincible := false
@@ -26,6 +28,7 @@ func _ready() -> void:
 	set_physics_process(false)
 	red()
 	died.connect(_on_died)
+	$KrTimer.timeout.connect(_on_kr_tick)
 
 func take_damage(amount: int) -> void:
 	if invincible or amount <= 0:
@@ -37,14 +40,26 @@ func take_damage(amount: int) -> void:
 	if hp <= 0:
 		died.emit()
 
-func take_tick_damage(amount: int) -> void:
+func take_tick_damage(amount: int, initial_hit: bool) -> void:
 	if amount <= 0:
 		return
+
 	hurtsound.play()
+
 	hp = max(hp - amount, 0)
+
+	if initial_hit:
+		kr = min(kr + 6, 40)
+	else:
+		kr = min(kr + 1, 40)
+
 	hurt.emit(amount)
+
 	if hp <= 0:
 		died.emit()
+
+	if kr > 0 and $KrTimer.is_stopped():
+		$KrTimer.start()
 
 func _flash_invincible() -> void:
 	invincible = true
@@ -117,3 +132,11 @@ func _on_died() -> void:
 	var death_screen := DeathScreenScene.instantiate()
 	death_screen.death_position = global_position
 	get_tree().current_scene.add_child(death_screen)
+	
+func _on_kr_tick() -> void:
+	if kr > 0:
+		kr -= 1
+		hp -= 1
+		
+func _process(delta: float) -> void:
+	$KrTimer.wait_time = krtime / 3.0 if kr > 30 else krtime

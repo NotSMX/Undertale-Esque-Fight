@@ -5,9 +5,6 @@
 [ext_resource type="FontFile" uid="uid://cpwhwcvfj8ern" path="res://Text/Fonts/ut-hp-font.ttf" id="2_6w6gy"]
 [ext_resource type="Theme" uid="uid://s3o3wkvbt3ej" path="res://Themes/DTMono24.tres" id="4_h3gwi"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvae3"]
-bg_color = Color(18.892157, 0, 0, 1)
-
 [node name="HUD" type="HBoxContainer" unique_id=344195473]
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,7 +53,6 @@ layout_mode = 2
 theme_override_constants/margin_bottom = 4
 
 [node name="KrBar" type="ProgressBar" parent="MarginContainer" unique_id=1118124448]
-visible = false
 modulate = Color(1, 0, 1, 1)
 layout_mode = 2
 size_flags_vertical = 1
@@ -71,7 +67,6 @@ modulate = Color(1, 1, 0, 1)
 layout_mode = 2
 size_flags_vertical = 1
 theme = ExtResource("4_h3gwi")
-theme_override_styles/background = SubResource("StyleBoxFlat_yvae3")
 max_value = 20.0
 value = 7.8100000000000005
 show_percentage = false

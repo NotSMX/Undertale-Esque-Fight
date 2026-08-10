@@ -111,7 +111,7 @@ layout_mode = 2
 theme = ExtResource("2_2m2k7")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 0
-theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
 text = "fuck you."
 scroll_active = false
@@ -119,6 +119,7 @@ visible_characters_behavior = 1
 script = ExtResource("11_0sva1")
 click_path = NodePath("Sounds/Generic")
 interval = 0.045
+theme_override_font_sizes/normal_font_size = 10
 
 [node name="Sounds" type="Node" parent="TextContainer/Text" unique_id=1301746588]
 
