@@ -1,21 +1,21 @@
 [gd_scene format=3 uid="uid://ctmkb1gh0a14s"]
 
-[ext_resource type="Texture2D" uid="uid://dk2rwlbs7uw0v" path="res://Battle/Buttons/spr_item0.png" id="1_cnynd"]
 [ext_resource type="Script" uid="uid://b80bcmaxc8ptx" path="res://Battle/Buttons/buttons.gd" id="1_d0ye7"]
-[ext_resource type="Texture2D" uid="uid://bo8dbluai58qo" path="res://Battle/Buttons/spr_fight0.png" id="1_umftf"]
-[ext_resource type="Texture2D" uid="uid://cp0v75saku3xj" path="res://Battle/Buttons/spr_fight1.png" id="2_aru3e"]
+[ext_resource type="Texture2D" uid="uid://buf5r8cehiuhu" path="res://Battle/Buttons/spr_strike1.png" id="2_h2smt"]
 [ext_resource type="Texture2D" uid="uid://hh75kjhlgr0j" path="res://Battle/Buttons/spr_fight0_u.png" id="3_dys34"]
+[ext_resource type="Texture2D" uid="uid://yctijf6hrjav" path="res://Battle/Buttons/spr_strike2.png" id="3_vjiao"]
 [ext_resource type="Texture2D" uid="uid://belhipinq1tmm" path="res://Battle/Buttons/spr_fight1_u.png" id="4_rhekv"]
-[ext_resource type="Texture2D" uid="uid://b1cqdoo2nwny8" path="res://Battle/Buttons/spr_act0.png" id="5_w41yv"]
-[ext_resource type="Texture2D" uid="uid://b7j70qgmhjesf" path="res://Battle/Buttons/spr_act1.png" id="6_werx2"]
+[ext_resource type="Texture2D" uid="uid://dmyfm8pq7bbu0" path="res://Battle/Buttons/spr_tactics1.png" id="6_w42xa"]
+[ext_resource type="Texture2D" uid="uid://c55hn4ij2lv3q" path="res://Battle/Buttons/spr_tactics2.png" id="7_2nohc"]
 [ext_resource type="Texture2D" uid="uid://btpeiuhmup7p6" path="res://Battle/Buttons/spr_act0_u.png" id="7_otko5"]
 [ext_resource type="Texture2D" uid="uid://sr3pdxhggam5" path="res://Battle/Buttons/spr_act1_u.png" id="8_24mtb"]
-[ext_resource type="Texture2D" uid="uid://m6wq7k7ns7c6" path="res://Battle/Buttons/spr_mercy0.png" id="9_28mv6"]
-[ext_resource type="Texture2D" uid="uid://cyfg13tt4yip" path="res://Battle/Buttons/spr_item1.png" id="10_qhvfw"]
+[ext_resource type="Texture2D" uid="uid://dvd20rbhdeh8l" path="res://Battle/Buttons/spr_pact1.png" id="10_7rbx0"]
 [ext_resource type="Texture2D" uid="uid://4enbojev6pcs" path="res://Battle/Buttons/spr_item0_u.png" id="11_g1iht"]
+[ext_resource type="Texture2D" uid="uid://f05681028xvi" path="res://Battle/Buttons/spr_pact2.png" id="11_up2mk"]
 [ext_resource type="Texture2D" uid="uid://dihqsq7fu3ajw" path="res://Battle/Buttons/spr_item1_u.png" id="12_3jn1g"]
-[ext_resource type="Texture2D" uid="uid://1xelfocfpxkv" path="res://Battle/Buttons/spr_mercy1.png" id="13_evnjy"]
 [ext_resource type="Texture2D" uid="uid://cx61fp3c7vpux" path="res://Battle/Buttons/spr_mercy0_u.png" id="14_cge5b"]
+[ext_resource type="Texture2D" uid="uid://bccnfnjc41isg" path="res://Battle/Buttons/spr_yield1.png" id="14_pt02x"]
+[ext_resource type="Texture2D" uid="uid://bhlbwrev13ck1" path="res://Battle/Buttons/spr_yield2.png" id="15_hacy3"]
 [ext_resource type="Texture2D" uid="uid://cw6cfqmedxo1f" path="res://Battle/Buttons/spr_mercy1_u.png" id="15_ois84"]
 [ext_resource type="AudioStream" uid="uid://c6u3egkne7fdu" path="res://sfx/button_choice.wav" id="18_ocd1v"]
 [ext_resource type="AudioStream" uid="uid://bh0xfl2mpo5vi" path="res://sfx/button_select.wav" id="19_egkmi"]
@@ -24,10 +24,10 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_umftf")
+"texture": ExtResource("2_h2smt")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_aru3e")
+"texture": ExtResource("3_vjiao")
 }],
 "loop": 1,
 "name": &"default",
@@ -49,10 +49,10 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_w41yv")
+"texture": ExtResource("6_w42xa")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_werx2")
+"texture": ExtResource("7_2nohc")
 }],
 "loop": 1,
 "name": &"default",
@@ -74,10 +74,10 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_cnynd")
+"texture": ExtResource("10_7rbx0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_qhvfw")
+"texture": ExtResource("11_up2mk")
 }],
 "loop": 1,
 "name": &"default",
@@ -99,10 +99,10 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_28mv6")
+"texture": ExtResource("14_pt02x")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_evnjy")
+"texture": ExtResource("15_hacy3")
 }],
 "loop": 1,
 "name": &"default",
