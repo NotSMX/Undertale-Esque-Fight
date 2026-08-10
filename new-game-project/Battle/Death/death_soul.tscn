@@ -32,7 +32,7 @@ direction = Vector3(1, 1, 0)
 spread = 166.364
 initial_velocity_min = 180.0
 initial_velocity_max = 220.0
-gravity = Vector3(0, 0, 0)
+gravity = Vector3(0, 98, 0)
 
 [node name="DeathSoul" type="AnimatedSprite2D" unique_id=2136421585]
 sprite_frames = SubResource("SpriteFrames_sgg3o")
@@ -47,7 +47,7 @@ stream = ExtResource("9_6pwoj")
 [node name="shards" type="GPUParticles2D" parent="." unique_id=1190593067]
 emitting = false
 texture = ExtResource("9_gwxdv")
-lifetime = 3.0
+lifetime = 10.0
 one_shot = true
 explosiveness = 1.0
 visibility_rect = Rect2(-7, -7, 14, 14)

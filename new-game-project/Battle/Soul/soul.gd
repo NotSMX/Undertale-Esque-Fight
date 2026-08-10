@@ -134,9 +134,16 @@ func _on_died() -> void:
 	get_tree().current_scene.add_child(death_screen)
 	
 func _on_kr_tick() -> void:
-	if kr > 0:
-		kr -= 1
-		hp -= 1
+	if kr <= 0:
+		$KrTimer.stop()
+		return
+
+	kr -= 1
+	hp = max(hp - 1, 1)
+
+	if hp <= 1:
+		kr = 0
+		$KrTimer.stop()
 		
 func _process(delta: float) -> void:
 	$KrTimer.wait_time = krtime / 3.0 if kr > 30 else krtime
