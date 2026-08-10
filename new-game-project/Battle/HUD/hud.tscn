@@ -108,7 +108,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.0
 
-[node name="KR2" type="RichTextLabel" parent="ResourceGauge" unique_id=1864422587]
+[node name="ResourceLabel" type="RichTextLabel" parent="ResourceGauge" unique_id=1864422587]
 custom_minimum_size = Vector2(30, 0)
 clip_contents = false
 layout_mode = 0
@@ -123,7 +123,7 @@ bbcode_enabled = true
 text = "BR"
 fit_content = true
 
-[node name="HpBar2" type="ProgressBar" parent="ResourceGauge" unique_id=835991137]
+[node name="ResourceBar" type="ProgressBar" parent="ResourceGauge" unique_id=835991137]
 modulate = Color(0.61, 0.61, 0.5612, 1)
 layout_mode = 0
 offset_left = -62.0
