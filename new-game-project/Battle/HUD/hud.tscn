@@ -5,6 +5,11 @@
 [ext_resource type="FontFile" uid="uid://cpwhwcvfj8ern" path="res://Text/Fonts/ut-hp-font.ttf" id="2_6w6gy"]
 [ext_resource type="Theme" uid="uid://s3o3wkvbt3ej" path="res://Themes/DTMono24.tres" id="4_h3gwi"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mbdmg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2ccw"]
+bg_color = Color(0.5019608, 0, 0, 1)
+
 [node name="HUD" type="HBoxContainer" unique_id=344195473]
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,3 +101,38 @@ layout_mode = 2
 theme = ExtResource("1_e8i8v")
 bbcode_enabled = true
 text = "92 / 92"
+
+[node name="ResourceGauge" type="Control" parent="." unique_id=132561176]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+
+[node name="KR2" type="RichTextLabel" parent="ResourceGauge" unique_id=1864422587]
+custom_minimum_size = Vector2(30, 0)
+clip_contents = false
+layout_mode = 0
+offset_left = -92.0
+offset_top = 5.0
+offset_right = -14.0
+offset_bottom = 25.0
+theme = ExtResource("1_e8i8v")
+theme_override_fonts/normal_font = ExtResource("2_6w6gy")
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "BR"
+fit_content = true
+
+[node name="HpBar2" type="ProgressBar" parent="ResourceGauge" unique_id=835991137]
+modulate = Color(0.61, 0.61, 0.5612, 1)
+layout_mode = 0
+offset_left = -62.0
+offset_top = 1.0
+offset_right = 34.0
+offset_bottom = 21.0
+size_flags_vertical = 1
+theme = ExtResource("4_h3gwi")
+theme_override_styles/background = SubResource("StyleBoxFlat_mbdmg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_o2ccw")
+value = 100.0
+show_percentage = false
