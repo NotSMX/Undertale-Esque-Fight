@@ -14,7 +14,20 @@
 [ext_resource type="PackedScene" uid="uid://bcc5a6ymsfegw" path="res://Battle/Attacks/bone_wave_attack.tscn" id="6_o266k"]
 [ext_resource type="PackedScene" uid="uid://b4hukgla52xe2" path="res://Battle/Attacks/zigzag_bone_attack.tscn" id="7_a07ib"]
 [ext_resource type="AudioStream" uid="uid://bh0xfl2mpo5vi" path="res://sfx/button_select.wav" id="7_u3o5n"]
+[ext_resource type="Script" uid="uid://dwg8myngxfe5g" path="res://Battle/Misc/dialogues.gd" id="8_8emss"]
 [ext_resource type="AudioStream" uid="uid://c6u3egkne7fdu" path="res://sfx/button_choice.wav" id="8_wdevt"]
+[ext_resource type="Script" uid="uid://c770xxsbtg0gi" path="res://Battle/Misc/dialogueline.gd" id="9_c3qhk"]
+[ext_resource type="Script" uid="uid://clhsenjdatvju" path="res://Battle/Misc/pause.gd" id="10_uwb2x"]
+
+[sub_resource type="Resource" id="Resource_sl17i"]
+script = ExtResource("9_c3qhk")
+text = "man fuck you"
+metadata/_custom_type_script = "uid://c770xxsbtg0gi"
+
+[sub_resource type="Resource" id="Resource_gf131"]
+script = ExtResource("8_8emss")
+dialogues = Array[ExtResource("9_c3qhk")]([SubResource("Resource_sl17i")])
+metadata/_custom_type_script = "uid://dwg8myngxfe5g"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yiolc"]
 size = Vector2(580, 10)
@@ -43,6 +56,7 @@ script = ExtResource("3_3kfiy")
 [node name="DefendingState" type="Node" parent="Behaviours" unique_id=1818018128]
 script = ExtResource("4_6rx2f")
 attacks = Array[PackedScene]([ExtResource("5_qm3eb"), ExtResource("6_o266k"), ExtResource("7_a07ib")])
+dialogues = Array[ExtResource("8_8emss")]([SubResource("Resource_gf131")])
 
 [node name="BoxContainer" type="MarginContainer" parent="." unique_id=309878457]
 custom_minimum_size = Vector2(35, 35)
@@ -311,7 +325,6 @@ clip_contents = false
 layout_mode = 2
 theme = ExtResource("3_f5ep8")
 bbcode_enabled = true
-text = "* PLACEHOLDER"
 scroll_active = false
 context_menu_enabled = true
 visible_characters_behavior = 1

@@ -8,6 +8,10 @@ var type_tween: Tween
 
 func gain_control() -> void:
 	enabled = true
+
+	if not is_inside_tree():
+		await tree_entered
+
 	_on_gain_control()
 
 func lose_control() -> void:

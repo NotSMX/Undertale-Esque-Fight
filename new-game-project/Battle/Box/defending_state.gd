@@ -4,6 +4,12 @@ const SQUARE_SIZE := 140.0
 const RESIZE_TIME := 0.25
 
 @export var attacks: Array[PackedScene] = []
+## Dialogue shown right before the matching attack in `attacks` (same index).
+## Leave an entry null/empty to skip dialogue for that attack.
+@export var dialogues: Array[Dialogues] = []
+
+## Adjust this path if DialogueControl lives somewhere else in your scene.
+@onready var dialogue_box: DialogueControl = Box.get_parent().get_node("Sans/Dialogue")
 
 var center: Vector2
 var initialized := false
@@ -70,17 +76,32 @@ func _on_gain_control() -> void:
 func _run_next_attack() -> void:
 	if attacks.is_empty():
 		return
-	current_attack = attacks[attack_index].instantiate()
+	var index := attack_index
 	attack_index = (attack_index + 1) % attacks.size()
-	add_child(current_attack)
-	current_attack.setup(Box)
-	current_attack.attack_finished.connect(_on_attack_finished, CONNECT_ONE_SHOT)
-	current_attack.start_attack()
+	await _play_pre_attack_dialogue(index)
+	_start_attack(attacks[index].instantiate())
 
 func _run_random_attack() -> void:
 	if attacks.is_empty():
 		return
-	current_attack = attacks.pick_random().instantiate()
+	var index := randi() % attacks.size()
+	await _play_pre_attack_dialogue(index)
+	_start_attack(attacks[index].instantiate())
+
+## Plays the Dialogues resource paired with `index`, if any, and waits for it
+## to finish (including the player confirming each line) before returning.
+func _play_pre_attack_dialogue(index: int) -> void:
+	if index >= dialogues.size():
+		return
+	var lines: Dialogues = dialogues[index]
+	if not lines or lines.dialogues.is_empty():
+		return
+	Box.box_busy = true
+	await dialogue_box.DialogueText(lines)
+	Box.box_busy = false
+
+func _start_attack(attack: AttackBase) -> void:
+	current_attack = attack
 	add_child(current_attack)
 	current_attack.setup(Box)
 	current_attack.attack_finished.connect(_on_attack_finished, CONNECT_ONE_SHOT)

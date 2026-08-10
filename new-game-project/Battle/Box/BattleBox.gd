@@ -28,14 +28,16 @@ func _process(_delta: float) -> void:
 	clip_area.size = box_frame.size
 	
 var current_state: BattleBoxBehaviour
+var intro_finished := false
 
 func _ready() -> void:
 	$BoxContainer.clip_contents = true
-	print("BoxContainer rect: ", $BoxContainer.get_global_rect())
-	print("NinePatchRect rect: ", box_frame.get_global_rect())
-	print("clip_contents: ", $BoxContainer.clip_contents)
 	buttons.selectbutton.connect(_on_select_button)
 	buttons.movesoul.connect(_on_move_soul)
+	buttons.disable()
+	
+func finish_intro() -> void:
+	intro_finished = true
 	change_state(State.Menu)
 	
 func change_state(new_state: State) -> void:
@@ -45,8 +47,14 @@ func change_state(new_state: State) -> void:
 	current_state.gain_control()
 	
 func _on_select_button(id: int) -> void:
+	if not intro_finished:
+		return
+
 	button_choice = id
 	change_state(State.Blittering)
 	
 func _on_move_soul(newpos: Vector2) -> void:
+	if not intro_finished:
+		return
+
 	get_parent().get_node("Soul").position = newpos

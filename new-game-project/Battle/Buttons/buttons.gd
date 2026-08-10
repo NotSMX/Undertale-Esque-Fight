@@ -11,15 +11,20 @@ signal movesoul(newpos: Vector2)
 signal selectbutton(id: int)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_left") and enabled:
+	if not enabled:
+		return
+
+	if event.is_action_pressed("ui_left"):
 		changepos(-1)
-	if event.is_action_pressed("ui_right") and enabled:
+
+	if event.is_action_pressed("ui_right"):
 		changepos(1)
-	if event.is_action_pressed("ui_accept") and enabled:
+
+	if event.is_action_pressed("ui_accept"):
 		disable()
 		emit_signal("selectbutton", choice)
 		select.play()
-
+		
 func changepos(action: int) -> void:
 	move.play()
 	choice = posmod(choice + action, 4)
