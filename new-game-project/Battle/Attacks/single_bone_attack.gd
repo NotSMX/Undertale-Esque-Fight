@@ -12,7 +12,7 @@ func _run_attack() -> void:
 	var spawn_pos := Vector2(box_rect.position.x - 20.0, box_rect.get_center().y)
 
 	var bone: Bone = spawn_bone(bone_scene, spawn_pos)
-	bone.damage = 20
+	bone.damage = 1
 	bone.set_length(60.0)
 	bone.fire(Vector2.RIGHT, bone_speed)
 

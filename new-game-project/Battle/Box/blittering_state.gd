@@ -9,8 +9,10 @@ var action_text := {
 
 func _on_gain_control() -> void:
 	Box.get_parent().get_node("Soul").visible = false
+	while Box.box_busy:
+		await get_tree().process_frame
 	type_text(action_text.get(Box.button_choice, "* ???"))
-
+	
 func input(event: InputEvent) -> void:
 	if not event.is_action_pressed("ui_accept"):
 		return

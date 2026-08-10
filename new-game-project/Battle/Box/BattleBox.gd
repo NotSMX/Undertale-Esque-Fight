@@ -9,6 +9,7 @@ enum State { Menu, Blittering, Defending }
 @onready var box_frame: Control = $BoxContainer/NinePatchRect
 @onready var click: AudioStreamPlayer = $Sounds/Generic2
 var button_choice: int = 0
+var box_busy := false
 @onready var states := {
 	State.Menu: $Behaviours/MenuState,
 	State.Blittering: $Behaviours/BlitteringState,

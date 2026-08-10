@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://bp5oyjspngmp2" path="res://sfx/Clicks/generic2.wav" id="5_61718"]
 [ext_resource type="PackedScene" uid="uid://cub2b36u03858" path="res://Battle/Attacks/single_bone_attack.tscn" id="5_qm3eb"]
 [ext_resource type="PackedScene" uid="uid://bcc5a6ymsfegw" path="res://Battle/Attacks/bone_wave_attack.tscn" id="6_o266k"]
+[ext_resource type="PackedScene" uid="uid://b4hukgla52xe2" path="res://Battle/Attacks/zigzag_bone_attack.tscn" id="7_a07ib"]
 [ext_resource type="AudioStream" uid="uid://bh0xfl2mpo5vi" path="res://sfx/button_select.wav" id="7_u3o5n"]
 [ext_resource type="AudioStream" uid="uid://c6u3egkne7fdu" path="res://sfx/button_choice.wav" id="8_wdevt"]
 
@@ -41,7 +42,7 @@ script = ExtResource("3_3kfiy")
 
 [node name="DefendingState" type="Node" parent="Behaviours" unique_id=1818018128]
 script = ExtResource("4_6rx2f")
-attacks = Array[PackedScene]([ExtResource("5_qm3eb"), ExtResource("6_o266k")])
+attacks = Array[PackedScene]([ExtResource("5_qm3eb"), ExtResource("6_o266k"), ExtResource("7_a07ib")])
 
 [node name="BoxContainer" type="MarginContainer" parent="." unique_id=309878457]
 custom_minimum_size = Vector2(35, 35)

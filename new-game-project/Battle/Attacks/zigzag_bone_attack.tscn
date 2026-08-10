@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b4hukgla52xe2"]
+
+[ext_resource type="Script" uid="uid://cm4ctw432lqfc" path="res://Battle/Attacks/zigzag_bone_attack.gd" id="1_phqx1"]
+[ext_resource type="PackedScene" uid="uid://bt05jnrx8nko6" path="res://Battle/Attacks/single_bone.tscn" id="2_vbc37"]
+
+[node name="ZigZagBoneAttack" type="Node2D" unique_id=1595422793]
+script = ExtResource("1_phqx1")
+bone_scene = ExtResource("2_vbc37")
+bone_count = 10
+spacing_delay = 0.1

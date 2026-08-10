@@ -32,6 +32,7 @@ func spawn_bone(bone_scene: PackedScene, position: Vector2, rotation_deg: float 
 	Box.clip_area.add_child(bone)
 	bone.global_position = position
 	bone.rotation_degrees = rotation_deg
+	spawned_bones.append(bone)
 	return bone
 
 ## Convenience: the current pixel rect of the (possibly shrunk) battle box.

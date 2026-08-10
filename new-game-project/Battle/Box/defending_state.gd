@@ -13,8 +13,11 @@ var original_sizes := {}
 var original_positions := {}
 var original_frame_size: Vector2
 var original_frame_position: Vector2
+var attack_index := 0
+
 
 func _on_gain_control() -> void:
+	Box.box_busy = true
 	var soul: SoulBattle = Box.get_parent().get_node("Soul")
 	soul.visible = false
 
@@ -56,12 +59,23 @@ func _on_gain_control() -> void:
 	tween.tween_property(frame, "global_position", center - Vector2(SQUARE_SIZE, SQUARE_SIZE) / 2.0, RESIZE_TIME)
 
 	await tween.finished
+	Box.box_busy = false
 
 	soul.global_position = center
 	soul.menu_disable()
 	soul.visible = true
 
-	_run_random_attack()
+	_run_next_attack()
+
+func _run_next_attack() -> void:
+	if attacks.is_empty():
+		return
+	current_attack = attacks[attack_index].instantiate()
+	attack_index = (attack_index + 1) % attacks.size()
+	add_child(current_attack)
+	current_attack.setup(Box)
+	current_attack.attack_finished.connect(_on_attack_finished, CONNECT_ONE_SHOT)
+	current_attack.start_attack()
 
 func _run_random_attack() -> void:
 	if attacks.is_empty():
@@ -81,6 +95,8 @@ func _on_lose_control() -> void:
 	if current_attack and is_instance_valid(current_attack):
 		current_attack.queue_free()
 		current_attack = null
+	
+	Box.box_busy = true
 
 	var top: CollisionShape2D = Box.walls["top"]
 	var bottom: CollisionShape2D = Box.walls["bottom"]
@@ -100,3 +116,4 @@ func _on_lose_control() -> void:
 
 	tween.tween_property(Box.box_frame, "size", original_frame_size, RESIZE_TIME)
 	tween.tween_property(Box.box_frame, "global_position", original_frame_position, RESIZE_TIME)
+	tween.finished.connect(func(): Box.box_busy = false)

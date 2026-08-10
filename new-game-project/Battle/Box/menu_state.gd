@@ -1,6 +1,8 @@
 extends BattleBoxBehaviour
 
 func _on_gain_control() -> void:
+	while Box.box_busy:
+		await get_tree().process_frame
 	type_text("* Joe Mama.")
 	Box.buttons.enable()
 	Box.get_node("../Soul").menu_enable()

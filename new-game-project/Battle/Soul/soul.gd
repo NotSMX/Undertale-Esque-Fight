@@ -13,7 +13,7 @@ var motion := Vector2.ZERO
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var hurtsound: AudioStreamPlayer = $Hurt
-@export var max_hp: int = 20
+@export var max_hp: int = 99
 var hp: int = max_hp
 const DeathScreenScene := preload("res://Battle/Death/death_screen.tscn")
 const INVINCIBILITY_TIME := 0.5
@@ -34,6 +34,15 @@ func take_damage(amount: int) -> void:
 	hp = max(hp - amount, 0)
 	hurt.emit(amount)
 	_flash_invincible()
+	if hp <= 0:
+		died.emit()
+
+func take_tick_damage(amount: int) -> void:
+	if amount <= 0:
+		return
+	hurtsound.play()
+	hp = max(hp - amount, 0)
+	hurt.emit(amount)
 	if hp <= 0:
 		died.emit()
 

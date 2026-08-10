@@ -16,6 +16,7 @@ offset_top = 399.0
 offset_right = 618.0
 offset_bottom = 423.0
 character_name = "ME"
+level = 20
 
 [node name="Soul" parent="." unique_id=38162190 instance=ExtResource("2_r5l0u")]
 position = Vector2(319, 328)
