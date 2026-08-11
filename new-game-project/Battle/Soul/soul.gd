@@ -145,5 +145,5 @@ func _on_kr_tick() -> void:
 		kr = 0
 		$KrTimer.stop()
 		
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$KrTimer.wait_time = krtime / 3.0 if kr > 30 else krtime

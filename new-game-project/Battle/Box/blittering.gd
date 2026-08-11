@@ -1,19 +1,42 @@
 extends BattleBoxBehaviour
 
+var action_text := {
+	0: "* You ready your weapon.",
+	3: "* They will not let you.",
+}
+
+var act_text := {
+	0: "* You check LR.\n* ATK 5 DEF 5",
+	1: "* You talk about the weather.",
+}
+
+var item_text := {
+	0: "* You use the Stick.\n* Nothing happened.",
+	1: "* You wrap the bandage.\n* HP fully restored!",
+}
+
 func _on_gain_control() -> void:
-	
-	Box.Screens[Box.State.Blittering].show()
-	if Box.ActionMemory.size() > 1:
-		Box.exit_menu.emit()
-	await Box.BlitterText.finished_all_texts
-	Box.disable()
+	Box.get_parent().get_node("Soul").visible = false
+	while Box.box_busy:
+		await get_tree().process_frame
+	var text: String
+	match Box.button_choice:
+		1: text = act_text.get(Box.sub_choice, "* ???")
+		2: text = item_text.get(Box.sub_choice, "* ???")
+		_: text = action_text.get(Box.button_choice, "* ???")
+	type_text(text)
 
 func input(event: InputEvent) -> void:
-	if !Box.BlitterText.typing:
+	if not event.is_action_pressed("ui_accept"):
 		return
-	if event.is_action_pressed("ui_accept"):
-		get_viewport().set_input_as_handled()
-	return
+	if typing:
+		skip_typing()
+	else:
+		Box.change_state(BattleBox.State.Defending)
+	get_viewport().set_input_as_handled()
 
 func _on_lose_control() -> void:
-	Box.Screens[Box.State.Blittering].hide()
+	if type_tween and type_tween.is_valid():
+		type_tween.kill()
+	Box.text_label.text = ""
+	Box.get_parent().get_node("Soul").visible = true

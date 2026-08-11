@@ -18,8 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://c6u3egkne7fdu" path="res://sfx/button_choice.wav" id="8_wdevt"]
 [ext_resource type="Script" uid="uid://c770xxsbtg0gi" path="res://Battle/Misc/dialogueline.gd" id="9_c3qhk"]
 [ext_resource type="Script" uid="uid://clhsenjdatvju" path="res://Battle/Misc/pause.gd" id="10_uwb2x"]
-[ext_resource type="Script" uid="uid://dji8xef7txdp4" path="res://Battle/Box/acts_state.gd" id="11_uwb2x"]
-[ext_resource type="Script" uid="uid://bqdgm8vvoli5b" path="res://Battle/Box/items_state.gd" id="12_jgkxt"]
+[ext_resource type="Script" uid="uid://b7thkdxikaydn" path="res://Battle/Box/options_state.gd" id="11_c3qhk"]
 
 [sub_resource type="Resource" id="Resource_sl17i"]
 script = ExtResource("9_c3qhk")
@@ -60,11 +59,8 @@ script = ExtResource("4_6rx2f")
 attacks = Array[PackedScene]([ExtResource("5_qm3eb"), ExtResource("6_o266k"), ExtResource("7_a07ib")])
 dialogues = Array[ExtResource("8_8emss")]([SubResource("Resource_gf131")])
 
-[node name="ActsState" type="Node" parent="Behaviours" unique_id=1268426258]
-script = ExtResource("11_uwb2x")
-
-[node name="ItemsState" type="Node" parent="Behaviours" unique_id=1871093289]
-script = ExtResource("12_jgkxt")
+[node name="OptionsState" type="Node" parent="Behaviours" unique_id=1159024852]
+script = ExtResource("11_c3qhk")
 
 [node name="BoxContainer" type="MarginContainer" parent="." unique_id=309878457]
 custom_minimum_size = Vector2(35, 35)
@@ -190,7 +186,7 @@ scroll_active = false
 visible = false
 offset_left = 28.0
 offset_top = 246.0
-offset_right = 612.0
+offset_right = 1210.0
 offset_bottom = 394.0
 theme_override_constants/margin_left = 74
 theme_override_constants/margin_top = 24
@@ -198,71 +194,39 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 10
 metadata/_edit_group_ = true
 
-[node name="Columns" type="HBoxContainer" parent="Items" unique_id=1447025599]
+[node name="TextContainer" type="MarginContainer" parent="Items" unique_id=1447025598]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/margin_bottom = 24
 
-[node name="TextContainer1" type="MarginContainer" parent="Items/Columns" unique_id=1447025598]
-custom_minimum_size = Vector2(0, 96)
-clip_contents = true
+[node name="Items" type="RichTextLabel" parent="Items/TextContainer" unique_id=268353304]
+clip_contents = false
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-
-[node name="Viewport1" type="Control" parent="Items/Columns/TextContainer1" unique_id=268353400]
-layout_mode = 2
-
-[node name="Column1" type="RichTextLabel" parent="Items/Columns/TextContainer1/Viewport1" unique_id=268353304]
-layout_mode = 0
-anchor_right = 1.0
-grow_horizontal = 2
-offset_bottom = 500.0
 theme = ExtResource("3_f5ep8")
 bbcode_enabled = true
-text = "[color=red]* Item 1
+text = "* Item 1
 * Item 2
 * Item 3
-* Item 4[/color]"
-scroll_active = false
-
-[node name="TextContainer2" type="MarginContainer" parent="Items/Columns" unique_id=1447025600]
-custom_minimum_size = Vector2(0, 96)
-clip_contents = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-
-[node name="Viewport2" type="Control" parent="Items/Columns/TextContainer2" unique_id=268353401]
-layout_mode = 2
-
-[node name="Column2" type="RichTextLabel" parent="Items/Columns/TextContainer2/Viewport2" unique_id=268353305]
-layout_mode = 0
-anchor_right = 1.0
-grow_horizontal = 2
-offset_bottom = 500.0
-theme = ExtResource("3_f5ep8")
-bbcode_enabled = true
-text = "[color=blue]* Item 5
-* Item 6
-* Item 7[/color]"
+Item 4
+Item 5
+Item 6
+Item 7
+Item 8"
 scroll_active = false
 
 [node name="ScrollContainer" type="Control" parent="Items" unique_id=314736947]
 layout_mode = 2
 
-[node name="Slider1" parent="Items/ScrollContainer" unique_id=804928672 instance=ExtResource("5_20ij6")]
+[node name="Slider" parent="Items/ScrollContainer" unique_id=804928672 instance=ExtResource("5_20ij6")]
 layout_mode = 0
-offset_left = 200.0
-offset_top = -10.0
-offset_right = 220.0
-offset_bottom = 90.0
-
-[node name="Slider2" parent="Items/ScrollContainer" unique_id=804928673 instance=ExtResource("5_20ij6")]
-layout_mode = 0
-offset_left = 470.0
-offset_top = -10.0
-offset_right = 490.0
-offset_bottom = 90.0
+anchors_preset = 0
+anchor_left = 0.0199456
+anchor_top = -0.178571
+anchor_right = 0.0199456
+anchor_bottom = 0.303571
+offset_left = 443.0
+offset_top = 10.0
+offset_right = 463.0
+offset_bottom = 57.0
 
 [node name="Target" type="MarginContainer" parent="." unique_id=31695523]
 visible = false
@@ -393,3 +357,29 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Options" type="Control" parent="." unique_id=1569652810]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Text2" type="RichTextLabel" parent="Options" unique_id=542439926]
+clip_contents = false
+layout_mode = 0
+offset_left = 50.0
+offset_top = 270.0
+offset_right = 597.0
+offset_bottom = 384.0
+theme = ExtResource("3_f5ep8")
+bbcode_enabled = true
+scroll_active = false
+context_menu_enabled = true
+visible_characters_behavior = 1
+script = ExtResource("4_shawu")
+interval = 0.05
+queued_texts_handling = 1
+
+[node name="Click" type="AudioStreamPlayer" parent="Options/Text2" unique_id=12255527]
+stream = ExtResource("5_61718")
+volume_db = -4.0

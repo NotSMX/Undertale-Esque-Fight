@@ -8,8 +8,10 @@ func _on_gain_control() -> void:
 	if not is_inside_tree(): return
 	type_text("* Joe Mama.")
 	Box.buttons.enable()
-	Box.get_node("../Soul").menu_enable()
+	Box.get_parent().get_node("Soul").visible = true
+	Box.get_parent().get_node("Soul").menu_enable()
 
 func _on_lose_control() -> void:
 	Box.buttons.disable()
 	Box.buttons.reset()
+	Box.text_label.text = ""

@@ -7,11 +7,28 @@ var action_text := {
 	3: "* They will not let you.",
 }
 
+var act_text := {
+	0: "* You check LR.\n* ATK 5 DEF 5",
+	1: "* You shoo them away.",
+	2: "* You flex your muscles.",
+}
+
+var item_text := {
+	0: "* You use the Stick.\n* Nothing happened.",
+	1: "* You wrap the bandage.\n* HP fully restored!",
+	2: "* You use the item.",
+}
+
 func _on_gain_control() -> void:
 	Box.get_parent().get_node("Soul").visible = false
 	while Box.box_busy:
 		await get_tree().process_frame
-	type_text(action_text.get(Box.button_choice, "* ???"))
+	var text: String
+	match Box.button_choice:
+		1: text = act_text.get(Box.sub_choice, "* ???")  # Tactics went through Acts
+		2: text = item_text.get(Box.sub_choice, "* ???") # Pact went through Items
+		_: text = action_text.get(Box.button_choice, "* ???")
+	type_text(text)
 	
 func input(event: InputEvent) -> void:
 	if not event.is_action_pressed("ui_accept"):
