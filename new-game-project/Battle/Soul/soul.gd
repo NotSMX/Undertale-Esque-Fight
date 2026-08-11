@@ -12,11 +12,21 @@ var inputs := Vector2.ZERO
 var motion := Vector2.ZERO
 
 @onready var sprite: Sprite2D = $Sprite
+@onready var fighter_sprite: AnimatedSprite2D = $FighterSprite
+@onready var fighter_anim: AnimationPlayer = $FighterSprite/FighterAnimations
 @onready var hurtsound: AudioStreamPlayer = $Hurt
 @export var max_hp: int = 99
+
+## True while the Fighting state has committed us to a swing — freezes
+## movement/jump input so landing a hit (or whiffing) actually costs you.
+var attack_locked := false
+## True while the Fighting state has control; toggles which sprite is shown
+## and lets blue() drive idle/run/jump animations on fighter_sprite.
+var fighting := false
 var hp: int = max_hp
 var kr: int = 0
 var krtime: float = 0.5
+var jump_anim_played := false
 const DeathScreenScene := preload("res://Battle/Death/death_screen.tscn")
 const INVINCIBILITY_TIME := 0.5
 var invincible := false
@@ -95,10 +105,13 @@ func red() -> void:
 func blue() -> void:
 	sprite.modulate = Color.BLUE
 	var slow_down := get_slow_down()
-	inputs = Vector2(
-		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
-		Input.is_action_pressed("ui_up")
-	)
+	if attack_locked:
+		inputs = Vector2.ZERO
+	else:
+		inputs = Vector2(
+			Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
+			Input.is_action_pressed("ui_up")
+		)
 	if not is_on_floor():
 		motion.y += gravity
 	motion.x = speed * ceil(inputs.x) / slow_down
@@ -114,6 +127,53 @@ func blue() -> void:
 				motion.y = lerpf(motion.y, 0, (jump[1] - 1.0) / 20.0)
 			else:
 				motion.y = lerpf(motion.y, 20, (jump[0] - 1.0) / 20.0)
+	if fighting:
+		_update_fighter_anim()
+
+## Swaps between the heart sprite and the fighter sprite, and switches which
+## one blue()/red() actually control visually.
+func set_fighting(active: bool) -> void:
+	fighting = active
+	sprite.visible = not active
+	fighter_sprite.visible = active
+	if active and fighter_anim.has_animation(&"idle"):
+		fighter_anim.play(&"idle")
+
+## Called by FightingState the instant a light/medium/heavy attack is
+## thrown. Plays the matching FighterAnimations clip, which scrubs
+## FighterSprite's frame across the sheet — not AnimatedSprite2D.play(),
+## since sprite_frames only has one "default" animation on it.
+func play_attack_anim(anim_name: StringName) -> void:
+	if fighter_anim.has_animation(anim_name):
+		fighter_anim.play(anim_name)
+
+## Picks idle/run/jump based on current motion. Skipped while an attack
+## animation is playing (attack_locked covers windup+recovery).
+func _update_fighter_anim() -> void:
+	if attack_locked:
+		return
+
+	if not is_on_floor():
+		# Play jump only once per jump.
+		if not jump_anim_played:
+			jump_anim_played = true
+
+			if fighter_anim.has_animation(&"jump"):
+				fighter_anim.play(&"jump")
+	else:
+		# Landing resets the jump animation state.
+		jump_anim_played = false
+
+		var anim: StringName = &"idle"
+
+		if absf(motion.x) > 1.0:
+			anim = &"run"
+
+		if fighter_anim.has_animation(anim) and fighter_anim.current_animation != anim:
+			fighter_anim.play(anim)
+
+	if absf(inputs.x) > 0.01:
+		fighter_sprite.flip_h = inputs.x > 0
 
 func set_mode(new_mode: Mode) -> void:
 	mode = new_mode

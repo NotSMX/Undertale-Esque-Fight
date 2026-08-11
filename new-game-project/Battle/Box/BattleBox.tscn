@@ -20,8 +20,10 @@
 [ext_resource type="Script" uid="uid://clhsenjdatvju" path="res://Battle/Misc/pause.gd" id="10_uwb2x"]
 [ext_resource type="Script" uid="uid://dji8xef7txdp4" path="res://Battle/Box/acts_state.gd" id="11_uwb2x"]
 [ext_resource type="Script" uid="uid://bqdgm8vvoli5b" path="res://Battle/Box/items_state.gd" id="12_jgkxt"]
+[ext_resource type="Script" uid="uid://c4r0xt1t0qq17" path="res://Battle/Box/fighting_state.gd" id="20_fghtst"]
 [ext_resource type="PackedScene" uid="uid://fouubpwxvo2s" path="res://Demons/J.tscn" id="21_ql6xb"]
 [ext_resource type="PackedScene" uid="uid://bkwtjm5enaoul" path="res://Demons/K.tscn" id="22_7rve3"]
+[ext_resource type="PackedScene" uid="uid://dueltarget001" path="res://Battle/Box/duel_target.tscn" id="24_fibvk"]
 
 [sub_resource type="Resource" id="Resource_sl17i"]
 script = ExtResource("9_c3qhk")
@@ -61,6 +63,10 @@ script = ExtResource("3_3kfiy")
 script = ExtResource("4_6rx2f")
 attacks = Array[PackedScene]([ExtResource("5_qm3eb"), ExtResource("6_o266k"), ExtResource("7_a07ib")])
 dialogues = Array[ExtResource("8_8emss")]([SubResource("Resource_gf131")])
+
+[node name="FightingState" type="Node" parent="Behaviours" unique_id=2094819213]
+script = ExtResource("20_fghtst")
+attacks = Array[PackedScene]([ExtResource("5_qm3eb")])
 
 [node name="ActsState" type="Node" parent="Behaviours" unique_id=1268426258]
 script = ExtResource("11_uwb2x")
@@ -410,3 +416,7 @@ offset_right = 640.0
 offset_bottom = 480.0
 mouse_filter = 2
 color = Color(0, 1, 1, 0)
+
+[node name="DuelTarget" parent="." unique_id=1227932937 instance=ExtResource("24_fibvk")]
+visible = false
+position = Vector2(560, 355)

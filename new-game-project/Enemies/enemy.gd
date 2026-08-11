@@ -33,8 +33,8 @@ signal spared(id_number: int)
 @export var dodging: bool = false
 @export var stats := {
 	"def": 10,
-	"hp": 100,
-	"max_hp": 100,
+	"hp": 1000,
+	"max_hp": 1000,
 	"kr": true
 }
 
@@ -99,6 +99,19 @@ func _hurt(_amt: int) -> void:
 	await tw.finished
 	tw = create_tween()
 	tw.tween_property(sprites, "position:x", defaultpos, 0.03)
+
+## Called by FightingState when a melee hit lands. Plays the same flinch
+## animation _hurt() already used elsewhere, then checks for death.
+func take_damage(amount: int) -> void:
+	if amount <= 0 or stats.get("hp", 0) <= 0:
+		return
+	stats.hp = max(stats.get("hp", 0) - amount, 0)
+	_hurt(amount)
+	if stats.hp <= 0:
+		on_death()
+		# TODO: hook up your actual victory flow here (rewards, scene
+		# transition, etc.) — on_defeat() is currently just a placeholder.
+		on_defeat()
 
 func on_fight_used() -> void:
 	pass

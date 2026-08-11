@@ -9,7 +9,7 @@ extends AttackBase
 
 func _run_attack() -> void:
 	var box_rect := get_box_rect()
-	var spawn_pos := Vector2(box_rect.position.x - 20.0, box_rect.get_center().y)
+	var spawn_pos := Vector2(box_rect.position.x - 20.0, box_rect.get_center().y + 20)
 
 	var bone: Bone = spawn_bone(bone_scene, spawn_pos)
 	bone.damage = 1

@@ -2,7 +2,7 @@ extends Node2D
 
 class_name BattleBox
 
-enum State { Menu, Acts, Items, Blittering, Defending }
+enum State { Menu, Acts, Items, Blittering, Defending, Fighting }
 
 @onready var buttons: BattleButtons = get_parent().get_node("Buttons")
 @onready var text_label: RichTextLabel = $Blitter/Text
@@ -18,7 +18,8 @@ var box_busy := false
 	State.Acts: $Behaviours/ActsState,
 	State.Items: $Behaviours/ItemsState,
 	State.Blittering: $Behaviours/BlitteringState,
-	State.Defending: $Behaviours/DefendingState
+	State.Defending: $Behaviours/DefendingState,
+	State.Fighting: $Behaviours/FightingState
 }
 @onready var walls := {
 	"top": $BoxContainer/Collisions/Top,
@@ -73,8 +74,9 @@ func _on_select_button(id: int) -> void:
 
 	button_choice = id
 	match id:
-		1: change_state(State.Acts)  
-		2: change_state(State.Items)   
+		0: change_state(State.Fighting)
+		1: change_state(State.Acts)
+		2: change_state(State.Items)
 		_: change_state(State.Blittering)
 
 func _on_move_soul(newpos: Vector2) -> void:
