@@ -112,27 +112,36 @@ size_flags_stretch_ratio = 0.0
 custom_minimum_size = Vector2(30, 0)
 clip_contents = false
 layout_mode = 0
-offset_left = -92.0
-offset_top = 5.0
-offset_right = -14.0
-offset_bottom = 25.0
+offset_left = -577.0
+offset_top = -319.0
+offset_right = -499.0
+offset_bottom = -229.0
 theme = ExtResource("1_e8i8v")
 theme_override_fonts/normal_font = ExtResource("2_6w6gy")
 theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
-text = "BR"
+text = "B
+
+L
+
+O
+
+O
+
+D"
 fit_content = true
 
 [node name="ResourceBar" type="ProgressBar" parent="ResourceGauge" unique_id=835991137]
 modulate = Color(0.61, 0.61, 0.5612, 1)
 layout_mode = 0
-offset_left = -62.0
-offset_top = 1.0
-offset_right = 34.0
-offset_bottom = 21.0
+offset_left = -551.0
+offset_top = -349.0
+offset_right = -531.0
+offset_bottom = -189.0
 size_flags_vertical = 1
 theme = ExtResource("4_h3gwi")
 theme_override_styles/background = SubResource("StyleBoxFlat_mbdmg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_o2ccw")
-value = 100.0
+value = 50.0
+fill_mode = 3
 show_percentage = false
