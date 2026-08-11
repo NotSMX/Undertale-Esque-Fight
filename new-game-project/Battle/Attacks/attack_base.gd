@@ -33,6 +33,8 @@ func spawn_bone(bone_scene: PackedScene, position: Vector2, rotation_deg: float 
 	bone.global_position = position
 	bone.rotation_degrees = rotation_deg
 	spawned_bones.append(bone)
+	if bone is Bone and Box.precognition_active:
+		bone.set_precog_trail_visible(true)
 	return bone
 
 ## Convenience: the current pixel rect of the (possibly shrunk) battle box.

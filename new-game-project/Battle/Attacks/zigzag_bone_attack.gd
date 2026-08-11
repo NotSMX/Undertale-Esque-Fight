@@ -25,6 +25,7 @@ func _spawn_zigzag_bone() -> void:
 
 	var bone: Bone = spawn_bone(bone_scene, pos)
 	bone.damage = 1
+	bone.set_bounce_bounds(box_rect.position.y, box_rect.position.y + box_rect.size.y)
 
 	_zigzag_loop(bone)
 

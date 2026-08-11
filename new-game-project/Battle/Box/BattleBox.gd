@@ -27,6 +27,10 @@ var box_busy := false
 	"right": $BoxContainer/Collisions/Right,
 }
 @onready var clip_area: Control = $ClipArea
+@onready var precog_overlay: ColorRect = $PrecogOverlay
+
+var precognition_active := false
+var precog_tween: Tween
 
 func _process(_delta: float) -> void:
 	clip_area.global_position = box_frame.global_position
@@ -41,6 +45,16 @@ func _ready() -> void:
 	buttons.movesoul.connect(_on_move_soul)
 	buttons.disable()
 	get_parent().get_node("Soul").visible = false
+
+## Fades the cyan precognition overlay in or out and tracks the flag that
+## AttackBase.spawn_bone checks so new bones pick up the current state.
+func set_precognition_active(active: bool) -> void:
+	precognition_active = active
+
+	if precog_tween and precog_tween.is_valid():
+		precog_tween.kill()
+	precog_tween = create_tween()
+	precog_tween.tween_property(precog_overlay, "color:a", 0.22 if active else 0.0, 0.15)
 
 func finish_intro() -> void:
 	intro_finished = true

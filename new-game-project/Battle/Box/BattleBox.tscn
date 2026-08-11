@@ -189,6 +189,7 @@ text = "* Flex"
 scroll_active = false
 
 [node name="Items" type="MarginContainer" parent="." unique_id=682802642]
+visible = false
 offset_left = 28.0
 offset_top = 246.0
 offset_right = 612.0
@@ -402,3 +403,10 @@ scale = Vector2(1.655, 1.655)
 [node name="K" parent="." unique_id=1003605043 instance=ExtResource("22_7rve3")]
 position = Vector2(55, 248.00002)
 scale = Vector2(1.655, 1.655)
+
+[node name="PrecogOverlay" type="ColorRect" parent="." unique_id=763987123]
+z_index = 100
+offset_right = 640.0
+offset_bottom = 480.0
+mouse_filter = 2
+color = Color(0, 1, 1, 0)

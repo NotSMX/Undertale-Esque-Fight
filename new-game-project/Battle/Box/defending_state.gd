@@ -73,6 +73,18 @@ func _on_gain_control() -> void:
 
 	_run_next_attack()
 
+func _unhandled_input(event: InputEvent) -> void:
+	if current_attack == null:
+		return
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_C:
+		_toggle_precognition()
+
+func _toggle_precognition() -> void:
+	Box.set_precognition_active(not Box.precognition_active)
+	for bone in current_attack.spawned_bones:
+		if bone is Bone:
+			bone.set_precog_trail_visible(Box.precognition_active)
+
 func _run_next_attack() -> void:
 	if attacks.is_empty():
 		return
@@ -110,13 +122,18 @@ func _start_attack(attack: AttackBase) -> void:
 func _on_attack_finished() -> void:
 	current_attack.queue_free()
 	current_attack = null
+	if Box.precognition_active:
+		Box.set_precognition_active(false)
 	Box.change_state(BattleBox.State.Menu)
 
 func _on_lose_control() -> void:
 	if current_attack and is_instance_valid(current_attack):
 		current_attack.queue_free()
 		current_attack = null
-	
+
+	if Box.precognition_active:
+		Box.set_precognition_active(false)
+
 	Box.box_busy = true
 
 	var top: CollisionShape2D = Box.walls["top"]
