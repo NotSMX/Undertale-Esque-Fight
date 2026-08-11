@@ -14,6 +14,10 @@ extends BattleBoxBehaviour
 	Box.get_node("Items/ScrollContainer/Slider2"),
 ]
 @onready var soul: SoulBattle = Box.get_parent().get_node("Soul")
+@onready var demons: Array[CharacterBody2D] = [
+	Box.get_node("J"),
+	Box.get_node("K"),
+]
 
 # Number of items in each column. Column 0 gets the first N, column 1 the rest.
 var column_item_counts: Array[int] = [4, 3]
@@ -32,6 +36,9 @@ func _on_gain_control() -> void:
 	items_container.show()
 	soul.visible = true
 	soul.menu_enable()
+
+	for demon in demons:
+		demon.set_items_screen_active(true)
 
 	# Let the nested HBoxContainer/MarginContainer layout resolve before we
 	# measure line heights off of it - a single frame isn't always enough
@@ -109,14 +116,14 @@ func input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_down"):
 		row = (row + 1) % column_item_counts[col]
 
-		Box.click.play()
+		Box.choice.play()
 		_update_scroll(col)
 		_update_soul_position()
 
 	elif event.is_action_pressed("ui_up"):
 		row = (row - 1 + column_item_counts[col]) % column_item_counts[col]
 
-		Box.click.play()
+		Box.choice.play()
 		_update_scroll(col)
 		_update_soul_position()
 
@@ -124,7 +131,7 @@ func input(event: InputEvent) -> void:
 		col += 1
 		row = min(row, column_item_counts[col] - 1)
 
-		Box.click.play()
+		Box.choice.play()
 		_update_scroll(col)
 		_update_soul_position()
 
@@ -132,7 +139,7 @@ func input(event: InputEvent) -> void:
 		col -= 1
 		row = min(row, column_item_counts[col] - 1)
 
-		Box.click.play()
+		Box.choice.play()
 		_update_scroll(col)
 		_update_soul_position()
 
@@ -143,7 +150,7 @@ func input(event: InputEvent) -> void:
 			offset += column_item_counts[i]
 
 		Box.sub_choice = offset + row
-		Box.click.play()
+		Box.select.play()
 		Box.change_state(BattleBox.State.Blittering)
 
 	elif event.is_action_pressed("ui_cancel"):
@@ -153,3 +160,6 @@ func input(event: InputEvent) -> void:
 
 func _on_lose_control() -> void:
 	items_container.hide()
+
+	for demon in demons:
+		demon.set_items_screen_active(false)

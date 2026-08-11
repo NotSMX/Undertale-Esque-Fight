@@ -8,6 +8,8 @@ enum State { Menu, Acts, Items, Blittering, Defending }
 @onready var text_label: RichTextLabel = $Blitter/Text
 @onready var box_frame: Control = $BoxContainer/NinePatchRect
 @onready var click: AudioStreamPlayer = $Sounds/Generic2
+@onready var choice: AudioStreamPlayer = $Sounds/choice
+@onready var select: AudioStreamPlayer = $Sounds/select
 var button_choice: int = 0
 var sub_choice: int = 0
 var box_busy := false

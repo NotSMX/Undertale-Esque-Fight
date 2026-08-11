@@ -43,26 +43,27 @@ func _flat_choice() -> int:
 func input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_down"):
 		row = (row + 1) % col_sizes[column]
-		Box.click.play()
+		Box.choice.play()
 		_update_soul_position()
 	elif event.is_action_pressed("ui_up"):
 		row = (row - 1 + col_sizes[column]) % col_sizes[column]
-		Box.click.play()
+		Box.choice.play()
 		_update_soul_position()
 	elif event.is_action_pressed("ui_right"):
 		if column < col_sizes.size() - 1:
 			column += 1
 			row = min(row, col_sizes[column] - 1)
-			Box.click.play()
+			Box.choice.play()
 			_update_soul_position()
 	elif event.is_action_pressed("ui_left"):
 		if column > 0:
 			column -= 1
 			row = min(row, col_sizes[column] - 1)
-			Box.click.play()
+			Box.choice.play()
 			_update_soul_position()
 	elif event.is_action_pressed("ui_accept"):
 		Box.sub_choice = _flat_choice()
+		Box.select.play()
 		Box.change_state(BattleBox.State.Blittering)
 	elif event.is_action_pressed("ui_cancel"):
 		Box.change_state(BattleBox.State.Menu)

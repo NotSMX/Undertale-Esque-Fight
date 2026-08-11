@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ctmkb1gh0a14s" path="res://Battle/Buttons/buttons.tscn" id="1_fw8re"]
 [ext_resource type="PackedScene" uid="uid://cobjcttlv6o13" path="res://Battle/Soul/soul.tscn" id="2_r5l0u"]
-[ext_resource type="PackedScene" uid="uid://ddrn1ah6fh2fp" path="res://Battle/Box/BattleBox.tscn" id="3_5g7vw"]
+[ext_resource type="PackedScene" uid="uid://3mahpp3h1cx4" path="res://Battle/Box/BattleBox.tscn" id="3_5g7vw"]
 [ext_resource type="PackedScene" uid="uid://dqju025dnhuna" path="res://Battle/HUD/hud.tscn" id="4_5joda"]
 [ext_resource type="PackedScene" uid="uid://bvrg40x0tgbxi" path="res://Enemies/Sans.tscn" id="5_gf131"]
 

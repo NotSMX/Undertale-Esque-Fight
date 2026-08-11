@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://fouubpwxvo2s"]
+
+[ext_resource type="Texture2D" uid="uid://bymp877cekyn" path="res://Demons/Demons.png" id="1_eai5l"]
+[ext_resource type="Script" uid="uid://bvc5r20dlt1tp" path="res://Demons/demon.gd" id="2_demon"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pci3m"]
+atlas = ExtResource("1_eai5l")
+region = Rect2(0, 135, 44, 135)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_febsl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pci3m")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jt2u"]
+atlas = ExtResource("1_eai5l")
+region = Rect2(44, 135, 44, 135)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ak8qr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jt2u")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_gj2gp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Body/Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wg3b0"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Body/Head:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 2.4444427)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qnlek"]
+_data = {
+&"RESET": SubResource("Animation_gj2gp"),
+&"idle": SubResource("Animation_wg3b0")
+}
+
+[node name="J" type="CharacterBody2D" unique_id=274118971]
+script = ExtResource("2_demon")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1882817554]
+
+[node name="Body" type="AnimatedSprite2D" parent="Node2D" unique_id=1164737747]
+position = Vector2(0, -65)
+sprite_frames = SubResource("SpriteFrames_febsl")
+
+[node name="Head" type="AnimatedSprite2D" parent="Node2D/Body" unique_id=427245446]
+sprite_frames = SubResource("SpriteFrames_ak8qr")
+
+[node name="Animations" type="AnimationPlayer" parent="." unique_id=997148619]
+libraries/ = SubResource("AnimationLibrary_qnlek")

@@ -397,9 +397,11 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="J" parent="." unique_id=274118971 instance=ExtResource("21_ql6xb")]
+visible = false
 position = Vector2(585, 248)
 scale = Vector2(1.655, 1.655)
 
 [node name="K" parent="." unique_id=1003605043 instance=ExtResource("22_7rve3")]
+visible = false
 position = Vector2(55, 248.00002)
 scale = Vector2(1.655, 1.655)
