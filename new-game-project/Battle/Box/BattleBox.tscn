@@ -189,7 +189,6 @@ text = "* Flex"
 scroll_active = false
 
 [node name="Items" type="MarginContainer" parent="." unique_id=682802642]
-visible = false
 offset_left = 28.0
 offset_top = 246.0
 offset_right = 612.0
@@ -244,7 +243,7 @@ offset_bottom = 500.0
 grow_horizontal = 2
 theme = ExtResource("3_f5ep8")
 bbcode_enabled = true
-text = "[color=blue]* Item 5
+text = "[color=cyan]* Item 5
 * Item 6
 * Item 7[/color]"
 scroll_active = false
