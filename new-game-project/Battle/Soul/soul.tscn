@@ -871,6 +871,7 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_i6l44")
 
 [node name="FighterSprite" type="AnimatedSprite2D" parent="." unique_id=-1455862819]
+visible = false
 sprite_frames = SubResource("SpriteFrames_ivm64")
 frame = 7
 offset = Vector2(0, -18)
